@@ -27,6 +27,7 @@ The following configuration options are planned for future releases:
 * Setting the number of offline responses before notifying an offline host.
 #
 
+## Q & A
 ### What exactly does pipoller do?
 
 **pipoller** will use the established hosts list to continuously poll them, monitoring and recording offline activity. Currently, this process occurs every *30 seconds* and after *2 rounds* of offline responses, an email notification will be sent out to a user-specified list of addresses. 
