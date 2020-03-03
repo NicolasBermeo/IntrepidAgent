@@ -7,12 +7,20 @@
 
 ### How can I configure pipoller?
 
+The interactive CLI will prompt users to 
+
+
 As of current, the following configuration options are available:
 * Setting the polling mode to ICMP.
 * Specifying a list or range of IP addresses.
-  * Currently limited to addresses in the same /24 subnet.
+  * Currently limited to addresses in the same /24 subnet via range.
 
 The following configuration options are planned for future releases:
 * Setting the polling mode to SNMPv1, SNMPv2c, & SNMPv3.
   * Configuring **pipoller** for these modes.
-* 
+* Setting a range of addresses in varying subnets.
+* Setting the wait time in between polls.
+* Setting the number of offline responses before notifying an offline host.
+
+
+
