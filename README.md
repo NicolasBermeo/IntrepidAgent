@@ -7,8 +7,11 @@
 
 ### How can I configure pipoller?
 
-The interactive CLI will prompt users to 
+The interactive CLI will prompt users to create a configuration file if none exists. If one does exist, users may choose to continue with the existing file in their working directory *or* create a new one to overwrite it. 
 
+Users will be walked through a configuration process by first specifying a polling mode. Additional configuration may be prompted for in order to communicate using the specified mode. This may include a community string for SNMPv2c or an authentication key for SNMPv3. 
+
+Finally, users will be asked to input either a list *or* range of host addresses. The configuration file will be complete after this point.
 
 As of current, the following configuration options are available:
 * Setting the polling mode to ICMP.
