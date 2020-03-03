@@ -5,7 +5,7 @@
 
 **pipoller** is a Python script that will ping a user-specified set of hosts and report on those that are offline. Hosts may be set through a configuration file in json format. This script is complete with an interactive CLI to prompt users to make any changes desired to the configuration.
 
-### How can I configure pipoller?
+### Configuring pipoller?
 
 The interactive CLI will prompt users to create a configuration file if none exists. If one does exist, users may choose to continue with the existing file in their working directory *or* create a new one to overwrite it. 
 
