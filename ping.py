@@ -1,3 +1,4 @@
+from time import sleep
 import subprocess
 import json
 import sys
@@ -37,19 +38,21 @@ def ping(hosts):
     while (1==1):
         for x in range (0, len(hosts)):
             if (os.name == 'nt'): #Windows, not functional
-                r = subprocess.run(['ping', '-n 1 ', hosts[x]], stdout=subprocess.DEVNULL)
+                r = subprocess.run(['ping', '-n', '1', hosts[x]], stdout=subprocess.DEVNULL)                
             else:
-                r = subprocess.run(['ping', '-c 1 ', '-w 3', hosts[x]], stdout=subprocess.DEVNULL)  
+                r = subprocess.run(['ping', ' -c 1 ', ' -w 3', hosts[x]], stdout=subprocess.DEVNULL)  
 
             if (r.returncode != 0):
-                #responses.append('Camera', x, ' @ ', hosts[x], ' is offline!  Code: ', r.returncode)    
-                print('Camera', x, ' @ ', hosts[x], ' is offline!  Code: ', r.returncode)
                 index[x] += 1
-
-                if (index[x] == 2):
+                
+                if (index[x] == 1):
+                    #responses.append('Camera', x, ' @ ', hosts[x], ' is offline!  Code: ', r.returncode)    
+                    print('Camera', x, ' @ ', hosts[x], ' is offline!  Code: ', r.returncode)
+                elif (index[x] == 2):
                     print('Camera', x, ' @ ', hosts[x], ' has been offline for (2) rounds! Email notification sent!  Code: ', r.returncode)
-
-                 
+            elif (r.returncode == 0):
+                index[x] = 0        
+        sleep(30)
 
 def gen_config(hosts):
     with open('./hosts.json', 'w+') as outfile:
