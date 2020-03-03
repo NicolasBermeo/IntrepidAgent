@@ -40,7 +40,7 @@ def ping(hosts):
             if (os.name == 'nt'): #Windows, not functional
                 r = subprocess.run(['ping', '-n', '1', hosts[x]], stdout=subprocess.DEVNULL)                
             else:
-                r = subprocess.run(['ping', '-c 1 ', '-w 3', hosts[x]], stdout=subprocess.DEVNULL)  
+                r = subprocess.run(['ping', '-c 1', '-w 3', hosts[x]], stdout=subprocess.DEVNULL)  
 
             if (r.returncode != 0):
                 index[x] += 1
@@ -51,7 +51,7 @@ def ping(hosts):
                 elif (index[x] == 2):
                     print('Camera', x, ' @ ', hosts[x], ' has been offline for (2) rounds! Email notification sent!  Code: ', r.returncode)
             elif (r.returncode == 0):
-                index[x] = 0        
+                index[x] = 0
         sleep(30)
 
 def gen_config(hosts):
@@ -166,10 +166,9 @@ def create_config():
 
 def main():
     if (os.path.isfile('./hosts.json') == False):
-        no_config()
-    else:
-        hosts = found_config()
-    
+        no_config()        
+
+    hosts = found_config()
     ping(hosts)
 
 if __name__ == "__main__":
