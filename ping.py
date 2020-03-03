@@ -1,9 +1,10 @@
-#test
 from time import sleep
 import subprocess
 import json
 import sys
 import os
+
+import smtplib, ssl
 
 #Create or open list of hosts
 #Pass to ping function
@@ -21,6 +22,18 @@ import os
 1   :   unreachable
 2   :   address error
 '''
+
+def mail(msg):
+    port = 465
+    password = ('pipollermail123')
+
+    context = ssl.create_default_context()
+    msg = """\
+        Subject: Camera Down\n\n""" + msg
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', port, context=context) as server:
+        server.login('pipoller.alert@gmail.com', password)
+        server.sendmail('pipoller.alert@gmail.com', 'nicolas.bermeo@ontariotechu.net', msg)
 
 def ping(hosts):
     
@@ -51,9 +64,13 @@ def ping(hosts):
                     print('Camera', x, ' @ ', hosts[x], ' is offline!  Code: ', r.returncode)
                 elif (index[x] == 2):
                     print('Camera', x, ' @ ', hosts[x], ' has been offline for (2) rounds! Email notification sent!  Code: ', r.returncode)
+                    msg = str('Camera ' +  str(x) + ' @ ' + hosts[x] + ' has been offline for (2) rounds! Code: ' + str(r.returncode))
+                    print(msg)
+                    mail(msg)
+
             elif (r.returncode == 0):
                 index[x] = 0
-        sleep(30)
+        sleep(5)
 
 def gen_config(hosts):
     with open('./hosts.json', 'w+') as outfile:
