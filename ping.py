@@ -40,7 +40,7 @@ def ping(hosts):
             if (os.name == 'nt'): #Windows, not functional
                 r = subprocess.run(['ping', '-n', '1', hosts[x]], stdout=subprocess.DEVNULL)                
             else:
-                r = subprocess.run(['ping', ' -c 1 ', ' -w 3', hosts[x]], stdout=subprocess.DEVNULL)  
+                r = subprocess.run(['ping', '-c 1 ', '-w 3', hosts[x]], stdout=subprocess.DEVNULL)  
 
             if (r.returncode != 0):
                 index[x] += 1
