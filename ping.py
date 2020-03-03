@@ -11,6 +11,11 @@ import smtplib, ssl
 #Ping all hosts, wait 30s, loop
 #Email if host is down for 2 pings in a row
 
+##Config For:
+###Hosts
+###Emails (sender and receiver)
+###Polling method and setup
+
 '''
 #########################
 #                       #
@@ -24,6 +29,9 @@ import smtplib, ssl
 '''
 
 def mail(msg):
+
+    #Loop to iterate through a list of set email addresses
+
     port = 465
     password = ('pipollermail123')
 
