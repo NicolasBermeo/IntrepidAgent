@@ -13,6 +13,7 @@ Users will be walked through a configuration process by first specifying a polli
 
 Finally, users will be asked to input either a list *or* range of host addresses. The configuration file will be complete after this point.
 
+#
 As of current, the following configuration options are available:
 * Setting the polling mode to ICMP.
 * Specifying a list or range of IP addresses.
@@ -24,6 +25,10 @@ The following configuration options are planned for future releases:
 * Setting a range of addresses in varying subnets.
 * Setting the wait time in between polls.
 * Setting the number of offline responses before notifying an offline host.
+#
 
+### What exactly does pipoller do?
+
+**pipoller** will use the established hosts list to continuously poll them, monitoring and recording offline activity. Currently, this process occurs every *30 seconds* and after *2 rounds* of offline responses, an email notification will be sent out to a user-specified list of addresses. 
 
 
