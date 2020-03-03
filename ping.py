@@ -1,4 +1,3 @@
-#test
 from time import sleep
 import subprocess
 import json
