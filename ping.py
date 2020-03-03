@@ -137,7 +137,7 @@ def create_config():
             #ver = 'ICMP'
             cc_in = input('\n\nPlease enter either a list or range of IP addresses.\n' +
                         'For a list, separate using commas. For a range, use dashes.\n' +
-                        'Please note that a range must not exceed the last octet.\n\n')
+                        'Please note that a range of addresses must be in the same /24 subnet.\n\n')
             cc_in = cc_in.replace(' ', '')
                         
 
