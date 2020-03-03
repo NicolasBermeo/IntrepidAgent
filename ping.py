@@ -29,7 +29,7 @@ import smtplib, ssl
 '''
 
 def mail(msg):
-    
+
     #Loop to iterate through a list of set email addresses
 
     port = 465
@@ -54,12 +54,11 @@ def ping(hosts):
             'All hosts will be pinged for (1) time every (30) seconds.\n' +
             'To exit at any time, press CTRL+C.\n\n')
 
-    #responses = []
     index = [0] * len(hosts)
 
     while (1==1):
         for x in range (0, len(hosts)):
-            if (os.name == 'nt'): #Windows, not functional
+            if (os.name == 'nt'):
                 r = subprocess.run(['ping', '-n', '1', hosts[x]], stdout=subprocess.DEVNULL)                
             else:
                 r = subprocess.run(['ping', '-c 1', '-w 3', hosts[x]], stdout=subprocess.DEVNULL)  
@@ -68,7 +67,6 @@ def ping(hosts):
                 index[x] += 1
                 
                 if (index[x] == 1):
-                    #responses.append('Camera', x, ' @ ', hosts[x], ' is offline!  Code: ', r.returncode)    
                     print('Camera', x, ' @ ', hosts[x], ' is offline!  Code: ', r.returncode)
                 elif (index[x] == 2):
                     print('Camera', x, ' @ ', hosts[x], ' has been offline for (2) rounds! Email notification sent!  Code: ', r.returncode)
