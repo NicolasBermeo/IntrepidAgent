@@ -1,2 +1,2 @@
-# pipoller ## - A simple Python script to ping hosts
-
+# pipoller
+##A simple Python script to ping hosts
