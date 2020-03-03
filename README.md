@@ -31,4 +31,6 @@ The following configuration options are planned for future releases:
 
 **pipoller** will use the established hosts list to continuously poll them, monitoring and recording offline activity. Currently, this process occurs every *30 seconds* and after *2 rounds* of offline responses, an email notification will be sent out to a user-specified list of addresses. 
 
+### Can I automate pipoller to run without user intervention?
 
+While this feature is not yet available, it is planned for release in the future. The script will take a json file and run without prompts afterwards. This will allow it to run unmonitored on device boot.
