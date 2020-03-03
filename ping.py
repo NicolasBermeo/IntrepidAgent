@@ -29,7 +29,7 @@ import smtplib, ssl
 '''
 
 def mail(msg):
-
+    
     #Loop to iterate through a list of set email addresses
 
     port = 465
