@@ -28,7 +28,7 @@ import smtplib, ssl
 2   :   address error
 '''
 
-def mail(msg):
+def mail(msg, emails):
 
     #Loop to iterate through a list of set email addresses
 
@@ -41,9 +41,10 @@ def mail(msg):
 
     with smtplib.SMTP_SSL('smtp.gmail.com', port, context=context) as server:
         server.login('pipoller.alert@gmail.com', password)
-        server.sendmail('pipoller.alert@gmail.com', 'nicolas.bermeo@ontariotechu.net', msg)
+		for mail in emails:
+			server.sendmail('pipoller.alert@gmail.com', mail, msg)
 
-def ping(hosts):
+def ping(hosts, emails):
     
     print('\n\n' +
             '#####################\n' +
@@ -72,7 +73,7 @@ def ping(hosts):
                     print('Camera', x, ' @ ', hosts[x], ' has been offline for (2) rounds! Email notification sent!  Code: ', r.returncode)
                     msg = str('Camera ' +  str(x) + ' @ ' + hosts[x] + ' has been offline for (2) rounds! Code: ' + str(r.returncode))
                     print(msg)
-                    mail(msg)
+                    mail(msg, emails)
 
             elif (r.returncode == 0):
                 index[x] = 0
@@ -188,12 +189,106 @@ def create_config():
                 print('Invalid input.')    
     return(hosts)
 
+def gen_emails(emails):
+	with open('./emails.json', 'w+') as outfile:
+		json.dump(emails, outfile)
+
+def load_emails():
+	with open('./emails.json') as infile:
+		emails = json.load(infile)
+	return(emails)
+
+def no_emails():
+	gc_in = '0'
+	while (gc_in != '2'):
+		gc_in = input('\n\n' +
+			'###########################\n' +
+			'#                         #\n' +
+			'#   Missing E-Mail File   #\n' +
+			'#                         #\n' +
+			'###########################\n\n' +
+			'An existing e-mail file could not be found at ' + os.getcwd() +
+			'\n\nPlease select one of the following options:\n\n' +
+			'1: Create a new e-mail file\n' +
+			'2: Exit\n')
+		
+		if (gc_in == '1'):
+			print('Generating e-mail file...')
+			gen_config(create_emails())
+			break
+		elif (gc_in == '2'):
+			print('Exiting...')
+			sys.exit()
+		else:
+			print('Invalid input.')
+
+def found_emails():
+	fc_in = '0'
+	while (fc_in != '3'):
+		fc_in = input('\n\n' +
+			'#########################\n' +
+			'#                       #\n' +
+			'#   Found E-Mail File   #\n' +
+			'#                       #\n' +
+			'#########################\n\n' +
+			'An existing e-mail file was found at ' + os.getcwd() +
+			'\n\nWould you like to continue using this file?\n' +
+			'1: Yes, continue using this file\n' +
+			'2: No, create a new file\n' +
+			'3: Exit\n')
+		
+		if (fc_in == '1'):
+			print('Continuing...')
+			return(load_emails())
+		elif (fc_in == '2'):
+			gen_config(create_emails())
+			return(load_emails())
+		elif (fc_in == '3'):
+			print('Exiting...')
+			sys.exit()
+		else:
+			print('Invalid input.')
+
+def create_emails():
+	cc_in = 0
+	while (cc_in != 4):
+		cc_in = input('\n\n' +
+			'##########################\n' +
+			'#                        #\n' +
+			'#   Create E-Mail File   #\n' +
+			'#                        #\n' +
+			'##########################\n\n')
+		
+		cc_in = input('Please enter a list of e-mail addresses.\n' +
+			'Separate liste entries with commas.\n\n')
+		cc_in = cc_in.replace(' ', '')
+		cc_in = cc.lower()
+		
+		emails = []
+		if (',' in cc_in):
+			cc_in = cc_in.replace(',', ' ')
+			addrs = cc_in.split(' ')
+			for x in range(0, int(len(addrs))):
+				emails.append(addrs[x])
+			break
+		else:
+			emails.append(cc_in)
+			break
+		# check if e-mails are valid?
+	
+	return(emails)
+
 def main():
     if (os.path.isfile('./hosts.json') == False):
         no_config()        
+	
+	if (os.path.isfile('./email.json') == False):
+		no_email()
 
     hosts = found_config()
-    ping(hosts)
+	email = found_emails()
+	
+    ping(hosts, emails)
 
 if __name__ == "__main__":
     main()
