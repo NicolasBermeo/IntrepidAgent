@@ -1,37 +1,43 @@
-# pipoller
-## A simple Python script to ping hosts
+# IntrepidAgent
+## A Python program used to monitor, record and report on network device statuses.
 
-### What is pipoller?
+### What is IntrepidAgent?
 
-**pipoller** is a Python script that will ping a user-specified set of hosts and report on those that are offline. Hosts may be set through a configuration file in json format. This script is complete with an interactive CLI to prompt users to make any changes desired to the configuration.
+**IntrepidAgent** is a Python script that will ping a user-specified set of hosts and report on those that are offline. Hosts may be set through a configuration file in json format. This script is complete with an interactive CLI to prompt users to make any changes desired to the configuration.
 
-### Configuring pipoller?
+### How to use IntrepidAgent
+`
+Usage: main.py [OPTION]
+Monitor, record and report on network device statuses.
 
-The interactive CLI will prompt users to create a configuration file if none exists. If one does exist, users may choose to continue with the existing file in their working directory *or* create a new one to overwrite it. 
+With no OPTION specified, run as verbose in terminal.
 
-Users will be walked through a configuration process by first specifying a polling mode. Additional configuration may be prompted for in order to communicate using the specified mode. This may include a community string for SNMPv2c or an authentication key for SNMPv3. 
+ -q, --quiet           suppress automatic printing of status information
+ -c, --configure       enter CLI configuration mode
+ -v, --version         output version information and exit
+ -h, --help            display this help and exit
 
-Finally, users will be asked to input either a list *or* range of host addresses. The configuration file will be complete after this point.
+To run as a background process on Linux, use 'main.py &'
+`
+
+### Configuring IntrepidAgent
+
+The interactive CLI will prompt users to create configuration files if none exist. If all configuration and log files exist in the current working directory, users may choose to append to these files or overwrite them. Users will be guided through a configuration process by first specifying which file they would like to configure. Configuration options for ICMP, email addresses and polling options are implemented in this solution. Files may be configured individually or all at once. 
 
 #
 As of current, the following configuration options are available:
-* Setting the polling mode to ICMP.
-* Specifying a list or range of IP addresses.
-  * Currently limited to addresses in the same /24 subnet via range.
-
-The following configuration options are planned for future releases:
-* Setting the polling mode to SNMPv1, SNMPv2c, & SNMPv3.
-  * Configuring **pipoller** for these modes.
-* Setting a range of addresses in varying subnets.
-* Setting the wait time in between polls.
-* Setting the number of offline responses before notifying an offline host.
+* Poll hosts through ICMP
+* Specifying an individual, list or range of IPv4 addresses.
+  * Limited to addresses in the same /24 subnet via range.
+* Specifying an individual or list of email addresses.
+* Specifying the wait time between polls and the amount of polls held before a host is marked as offline.
 #
 
 ## Q & A
-### What exactly does pipoller do?
+### What exactly does IntrepidAgent do?
 
-**pipoller** will use the established hosts list to continuously poll them, monitoring and recording offline activity. Currently, this process occurs every *30 seconds* and after *2 rounds* of offline responses, an email notification will be sent out to a user-specified list of addresses. 
+**IntrepidAgent** polls hosts using ICMP to determine their online status. Polls are sent out at a user-specified interval and after hosts are offline for a user-specified amount of polls, they will be marked as offline. This event will be logged and an email notification will be sent out to all specified recipients.
 
-### Can I automate pipoller to run without user intervention?
+### Can I automate IntrepidAgent to run without user intervention?
 
-While this feature is not yet available, it is planned for release in the future. The script will take a json file and run without prompts afterwards. This will allow it to run unmonitored on device boot.
+Yes, the script may be ran quietly or as a background process. No user intervention is required as long as all required files exist in the working directory.
