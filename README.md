@@ -6,19 +6,19 @@
 **IntrepidAgent** is a Python script that will ping a user-specified set of hosts and report on those that are offline. Hosts may be set through a configuration file in json format. This script is complete with an interactive CLI to prompt users to make any changes desired to the configuration.
 
 ### How to use IntrepidAgent
-`
-Usage: main.py [OPTION]
-Monitor, record and report on network device statuses.
 
-With no OPTION specified, run as verbose in terminal.
+    Usage: main.py [OPTION]
+    Monitor, record and report on network device statuses.
 
- -q, --quiet           suppress automatic printing of status information
- -c, --configure       enter CLI configuration mode
- -v, --version         output version information and exit
- -h, --help            display this help and exit
+    With no OPTION specified, run as verbose in terminal.
 
-To run as a background process on Linux, use 'main.py &'
-`
+     -q, --quiet           suppress automatic printing of status information
+     -c, --configure       enter CLI configuration mode
+     -v, --version         output version information and exit
+     -h, --help            display this help and exit
+
+    To run as a background process on Linux, use 'main.py &'
+
 
 ### Configuring IntrepidAgent
 
