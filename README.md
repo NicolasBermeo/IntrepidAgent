@@ -1,5 +1,5 @@
 # IntrepidAgent
-## A Python program used to monitor, record and report on network device statuses.
+## Monitor, record and report on network device statuses.
 
 ### What is IntrepidAgent?
 
@@ -18,7 +18,6 @@
      -h, --help            display this help and exit
 
     To run as a background process on Linux, use 'main.py &'
-
 
 ### Configuring IntrepidAgent
 
