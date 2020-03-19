@@ -1,3 +1,4 @@
+### Outdated, use main.py
 from time import sleep
 import subprocess
 import json
@@ -5,8 +6,6 @@ import sys
 import os
 
 import smtplib, ssl
-
-### Outdated, use main.py
 
 #Create or open list of hosts
 #Pass to ping function
