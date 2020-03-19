@@ -45,7 +45,7 @@ def icmp(quiet):
                 elif (index[x] == poll[1]):
                     if (quiet == False):
                         print('Camera', x+1, ' @ ', hosts[x], ' has been offline for', poll[1], 'rounds! Email notification sent!  Code: ', r.returncode)
-                    msg = str('Camera ' +  str(x+1) + ' @ ' + str(hosts[x]) + ' has been offline for' + str(poll[1]) + 'rounds! Code: ' + str(r.returncode))
+                    msg = str('Camera ' +  str(x+1) + ' @ ' + str(hosts[x]) + ' has been offline for' + str(poll[1]) + ' rounds! Code: ' + str(r.returncode))
                     mail(msg)
                     log(msg)
 
