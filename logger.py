@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-import mysql.connector as mysql
+#import mysql.connector as mysql
 
 # --- LOGGING FUNCTIONS ---
 '''
