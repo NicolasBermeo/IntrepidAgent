@@ -45,24 +45,24 @@ def init_config():
             ' 1: Configure host addresses\n' +
             ' 2: Configure email addresses\n' +
             ' 3: Configure ICMP polling\n' +
-            ' 4: Configure all\n' +
-            ' 5: Exit\n\n')
+            ' 4: Configure Email Authentication\n' +
+            ' 5: Configure all\n' +
+            ' 6: Exit\n\n')
         
-        if (ic_in == '1'):
-            print('Call host addressing config function.')
+        if (ic_in == '1'):            
             host_config()
-        elif (ic_in == '2'):
-            print('Call email addressing config function.')
+        elif (ic_in == '2'):            
             mail_config()
-        elif (ic_in == '3'):
-            print('Call ICMP polling config function.')
+        elif (ic_in == '3'):            
             poll_config()
-        elif (ic_in == '4'): # May remove due to error with selecting the 'Back' option.
-            print('Call all config functions.')
+        elif (ic_in == '4'):            
+            auth_config()
+        elif (ic_in == '5'): # May remove due to error with selecting the 'Back' option.            
             host_config()
             mail_config()
             poll_config()
-        elif (ic_in == '5'):
+            auth_config()
+        elif (ic_in == '6'):
             print('Exiting...')
             sys.exit(0)
 
@@ -93,7 +93,7 @@ def config_base(c_type):
 
             if (os.path.isfile(path) == True):                
                 cb_in = input('\n\nAn existing ' + c_type + ' configuration file has been found at:\n' + os.getcwd() +
-                    '/config\n\nWould you like to overwrite this?\n' +
+                    '\config\n\nWould you like to overwrite this?\n' +
                     ' 1: Yes\n' +
                     ' 2: No\n\n')
                 if (cb_in == '1'):
@@ -220,13 +220,19 @@ def host_config():
 
 # --- EMAIL CONFIGURATION FUNCTIONS ---
 '''
-    This function is used to configure mail.json.    
+    These functions are used to configure mail.json and auth.json.    
 
     mail_config() prompts the user for addresses they would like to add to the file, calling config_base() to
     retrieve the append and back boolean variables used to navigate the function and manage writing to the file.
         It passes a list containing all user-specified email addresses to set_config(), but only if they are all 
         legal and no errors have occured due to invalid input. Errors cause the function to return back to 
         init_config() so they user may try again.
+    
+    auth_config() prompts the user for the email address and password to be used when sending status updates
+    via email. config_base() is called to retrieve the append and back boolean variables used to navigate
+    the function and manage writing to the file.
+        It passes a list containing the email address and password to set_config() to update the associated
+        file.
 '''
 # -------------------------------------
 def mail_config():
@@ -266,6 +272,36 @@ def mail_config():
             return        
     
     set_config(emails, append, 'mail')
+
+    return
+
+def auth_config():
+    append, back = config_base('auth')
+
+    if (back == True):
+        return
+    if (append == True):
+        print('Cannot append to an auth configuration file. Please select another option.')
+        return
+
+    auth_in = input('Please enter the email address used to send status updates:\n\n')
+    regex = re.compile(r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$')
+
+    auth = []
+
+    try:
+        if(regex.fullmatch(auth_in)):
+            auth.append(auth_in)
+        else:
+            print('Invalid input.')
+    except IndexError:
+        print('Invalid input.')
+        return
+    
+    auth_in = input('Please enter the password used for the specified email address:\n\n')
+    auth.append(auth_in)
+
+    set_config(auth, append, 'auth')
 
     return
 # -------------------------------------
