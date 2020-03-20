@@ -5,13 +5,6 @@ import os
 from configure import init_config
 from icmp import icmp
 
-# main script that deals with argparse
-# other scripts will deal with config/modules
-    # options to config ping, email, ip addresses, or all
-    # modules for ping, email, log, etc.
-
-# sys.exit
-
 '''
 ##########################
 #                        #
@@ -23,7 +16,6 @@ c   :   configure
 h   :   help
 v   :   version
 '''
-
 
 def main(argv):   
     
