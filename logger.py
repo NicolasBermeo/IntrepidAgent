@@ -6,8 +6,8 @@ from datetime import datetime
 '''
     The following functions are used to log device status to a text file or MySQL database.
 
-	log() obtains the current date and time as well as a pre-defined message passed from the poll function.
-	It appends each of these to a pre-existing text file each time a camera is marked as offline.
+	log() obtains the current date and time as well as a predefined message passed from the poll function.
+	It appends each of these to an existing text log file each time a camera is marked as offline.
 		It does not return any value.
     
 	mysql_log() acts similarly to log(), however it contacts a MySQL database to log the same information.
