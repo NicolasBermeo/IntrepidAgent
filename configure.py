@@ -57,7 +57,7 @@ def init_config():
             poll_config()
         elif (ic_in == '4'):            
             auth_config()
-        elif (ic_in == '5'): # May remove due to error with selecting the 'Back' option.            
+        elif (ic_in == '5'):      
             host_config()
             mail_config()
             poll_config()
