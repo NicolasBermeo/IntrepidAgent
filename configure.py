@@ -316,7 +316,7 @@ def auth_config():
     host polls and the number of polls without a response before the host is marked as offline. config_base()
     is called to retrieve the append and back boolean variables used to navigate the function and manage 
     writing to the file.
-        It passes a list containing the integer value to set_config(), but only if the input is a valid
+        It passes a list containing the integer values to set_config(), but only if the inpust are valid
         integer greater than or equal to 0. Errors cause the function to return back to init_config() so
         the user may try again.
 '''
