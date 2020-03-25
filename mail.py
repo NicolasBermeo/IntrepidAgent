@@ -14,12 +14,7 @@ from configure import get_config
 
     mail() receives a message from the polling function and uses it to form an email. This email
     is then sent out to all addresses contained in mail.json.
-
-    host_config() prompts the user for addresses they would like to add to the file, calling config_base() to
-    retrieve the append and back boolean variables used to navigate the function and manage writing to the file.
-        It passes a list containing all user-specified hosts to set_config(), but only if they are all legal 
-        and no errors have occured due to invalid input. Errors cause the function to return back to init_config() 
-        so they user may try again.
+        It does not return any value.
 '''
 # ------------------------
 def mail(msg):
