@@ -36,7 +36,7 @@ def main(argv):
                 ' -c, --configure       enter CLI configuration mode\n' +
                 ' -v, --version         output version information and exit\n' +
                 ' -h, --help            display this help and exit\n\n' +
-                'To run as a background process on Linux, use \'main.py &\'\n')
+                'To run as a background process on Linux, use \'python3 main.py &\'\n')
             sys.exit(0)
         elif opt in ('-v', '--version'):
             print('Version: 1.0.0\n')
