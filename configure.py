@@ -312,9 +312,10 @@ def auth_config():
 '''
     This function is used to configure poll.json.    
 
-    poll_config() prompts the user for an integer value describing the time (in seconds) to wait between
-    host polls. config_base() is called to retrieve the append and back boolean variables used to navigate
-    the function and manage writing to the file.
+    poll_config() prompts the user for integers values, describing the time (in seconds) to wait between
+    host polls and the number of polls without a response before the host is marked as offline. config_base()
+    is called to retrieve the append and back boolean variables used to navigate the function and manage 
+    writing to the file.
         It passes a list containing the integer value to set_config(), but only if the input is a valid
         integer greater than or equal to 0. Errors cause the function to return back to init_config() so
         the user may try again.
