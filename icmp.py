@@ -24,7 +24,7 @@ from logger import log #, mysql_log
     The following function is used to poll a list of hosts via ICMP.
 
     icmp() polls hosts by first fetching all required configuration files, validating accuracy, and then
-    continuing. Depending on if the host OS is Windows or Linux, the ping command will be ran differently.
+    continuing. Depending on if the host OS is Windows or Linux, the ping command will be run differently.
     According to the pulled poll.json file, hosts from host.json will be polled every X seconds and will be
     marked as offline after Y failed responses. A message will be formed based on responses and forwarded to
     mail() and log() to email and log these status updates respectively. It takes in a boolean value (quiet),
