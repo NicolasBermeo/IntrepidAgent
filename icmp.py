@@ -8,6 +8,17 @@ from mail import mail
 from configure import get_config
 from logger import log #, mysql_log
 
+'''
+#########################
+#                       #
+#   Ping Return Codes   #
+#                       #
+#########################
+0   :   success
+1   :   unreachable
+2   :   address error
+'''
+
 # --- ICMP FUNCTION ---
 '''
     The following function is used to poll a list of hosts via ICMP.
@@ -62,13 +73,13 @@ def icmp(quiet):
                         print('Camera', x+1, ' @ ', hosts[x], ' is offline!  Code: ', r.returncode)
                 elif (index[x] == poll[1]):
                     if (quiet == False):
-                        print('Camera', x+1, ' @ ', hosts[x], ' has been offline for', poll[1], 'rounds! Email notification sent!  Code: ', r.returncode)
-                    msg = str('Camera ' +  str(x+1) + ' @ ' + str(hosts[x]) + ' has been offline for ' + str(poll[1]) + ' rounds! Code: ' + str(r.returncode))
+                        print('Camera', x+1, ' @ ', hosts[x], ' has been offline for', poll[1], 'polls! Email notification sent!  Code: ', r.returncode)
+                    msg = str('Camera ' +  str(x+1) + ' @ ' + str(hosts[x]) + ' has been offline for ' + str(poll[1]) + ' polls! Code: ' + str(r.returncode))
                     mail(msg)
                     log(msg)
                     #mysql_log(msg)
 
-            elif (r.returncode == 0):
+            elif (r.returncode == 0 and index[x] != 0):
                 index[x] = 0
                 if (quiet == False):
                     print('Camera', x+1, ' @ ', hosts[x], ' has come back online!')
