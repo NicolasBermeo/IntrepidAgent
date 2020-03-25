@@ -17,7 +17,7 @@
      -v, --version         output version information and exit
      -h, --help            display this help and exit
 
-    To run as a background process on Linux, use 'main.py &'
+    To run as a background process on Linux, use 'python3 main.py &'
 
 ### Configuring IntrepidAgent
 
